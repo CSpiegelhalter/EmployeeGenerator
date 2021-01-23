@@ -65,7 +65,17 @@ function createEmployee(newJob) {
                 type: 'input',
                 name: 'managerEmail',
                 message: "What is your manager's email?",
-                validation: val => email.test(val)
+                default: () => {},
+                validation: function (val) {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)
+                    if (valid) {
+                        return true;
+                    } else {
+                        console.log(".  Please enter a valid email")
+                        return false;
+                    }
+                }
+            
         
             },
         
@@ -103,7 +113,15 @@ function createEmployee(newJob) {
                 type: 'input',
                 name: 'engineerEmail',
                 message: "What is your engineer's email?",
-                validation: val => email.test(val),
+                validation: function (val) {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)
+                    if (valid) {
+                        return true;
+                    } else {
+                        console.log(".  Please enter a valid email")
+                        return false;
+                    }
+                }
         
             },
         
@@ -142,7 +160,15 @@ function createEmployee(newJob) {
                 type: 'input',
                 name: 'internEmail',
                 message: "What is your intern's email?",
-                validation: val => email.test(val),
+                validation: function (val) {
+                    valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(val)
+                    if (valid) {
+                        return true;
+                    } else {
+                        console.log(".  Please enter a valid email")
+                        return false;
+                    }
+                }
         
             },
         
@@ -209,7 +235,7 @@ function addMore() {
         }
         else{
             let loadHtml = render(teamMembers)
-            fs.writeFile('./output/team.html', loadHtml, function (err) {
+            fs.writeFile(outputPath, loadHtml, function (err) {
                 if (err) return console.log(err);
                 console.log('Hello World > helloworld.txt');
               });
